@@ -29,6 +29,7 @@ public struct FocusTextField<Placeholder: View>: View {
 			placeholder
 				.scaleEffect(active ? 0.5 : 1, anchor: .leading)
 				.offset(x: 0, y: active ? -20 : 0)
+				.onTapGesture { isFocused = true }
 		}
 		.padding(.top, 20)
 		.onChange(of: text.wrappedValue) { _ in updateActive() }

@@ -11,12 +11,26 @@ import FocusTextField
 struct ContentView: View {
 	@State var text: String = ""
 	
+	@FocusState public var isFocused: Bool
+	
 	var body: some View {
 		ZStack(alignment: .center) {
 			Color.clear
 			VStack {
 				FocusTextField(text: $text) {
 					Text("Placeholder")
+				}
+				.focused($isFocused)
+				HStack {
+					Spacer()
+					Button(action: { isFocused = false }) {
+						Text("Unfocus")
+					}
+					Spacer()
+					Button(action: { isFocused = true }) {
+						Text("Focus")
+					}
+					Spacer()
 				}
 			}
 			.padding()
