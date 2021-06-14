@@ -17,8 +17,8 @@ struct ContentView: View {
 		ZStack(alignment: .center) {
 			Color.clear
 			VStack {
-				FocusTextField(text: $text) {
-					Text("Placeholder")
+				FocusTextField(text: $text, animation: .spring(), spacing: 5, placeholderScale: 0.5) {
+					Label("Placeholder", systemImage: "square.and.pencil")
 				}
 				.focused($isFocused)
 				HStack {

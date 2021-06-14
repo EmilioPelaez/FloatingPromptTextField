@@ -10,24 +10,30 @@ import SwiftUI
 @available(iOS 15.0, *)
 public struct FocusTextField<Placeholder: View>: View {
 	
-	@FocusState public var isFocused: Bool
+	@FocusState private var isFocused: Bool
 	
-	public var text: Binding<String>
-	public let placeholder: Placeholder
+	private var text: Binding<String>
+	private let placeholder: Placeholder
 	
-	let activeScale: Double = 0.5
-	let spacing: Double = 5
+	private let animation: Animation
+	
+	private let placeholderScale: Double
+	private let spacing: Double
 	
 	var activeOffset: Double {
-		spacing + placeholderHeight * activeScale
+		spacing + placeholderHeight * placeholderScale
 	}
 	
 	@State private var active: Bool = false
 	@State private var placeholderHeight: Double = 0
 	
-	public init(text: Binding<String>, @ViewBuilder placeholder: @escaping () -> Placeholder) {
+	public init(text: Binding<String>, animation: Animation = .default, spacing: Double = 5, placeholderScale: Double = 0.5, @ViewBuilder placeholder: @escaping () -> Placeholder) {
 		self.text = text
 		self.placeholder = placeholder()
+		
+		self.animation = animation
+		self.spacing = spacing
+		self.placeholderScale = placeholderScale
 	}
 	
 	public var body: some View {
@@ -41,7 +47,7 @@ public struct FocusTextField<Placeholder: View>: View {
 							.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
 					}
 				)
-				.scaleEffect(active ? activeScale : 1, anchor: .topLeading)
+				.scaleEffect(active ? placeholderScale : 1, anchor: .topLeading)
 				.offset(x: 0, y: active ? -activeOffset : 0)
 				.onTapGesture { isFocused = true }
 		}
@@ -55,7 +61,7 @@ public struct FocusTextField<Placeholder: View>: View {
 	}
 	
 	func updateActive() {
-		withAnimation {
+		withAnimation(animation) {
 			active = !text.wrappedValue.isEmpty || isFocused
 		}
 	}
