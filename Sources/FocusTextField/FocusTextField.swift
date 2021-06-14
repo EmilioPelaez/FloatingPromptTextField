@@ -15,7 +15,15 @@ public struct FocusTextField<Placeholder: View>: View {
 	public var text: Binding<String>
 	public let placeholder: Placeholder
 	
+	let activeScale: Double = 0.5
+	let spacing: Double = 5
+	
+	var activeOffset: Double {
+		spacing + placeholderHeight * activeScale
+	}
+	
 	@State private var active: Bool = false
+	@State private var placeholderHeight: Double = 0
 	
 	public init(text: Binding<String>, @ViewBuilder placeholder: @escaping () -> Placeholder) {
 		self.text = text
@@ -27,13 +35,23 @@ public struct FocusTextField<Placeholder: View>: View {
 			TextField("", text: text)
 				.focused($isFocused)
 			placeholder
-				.scaleEffect(active ? 0.5 : 1, anchor: .leading)
-				.offset(x: 0, y: active ? -20 : 0)
+				.background(
+					GeometryReader { proxy in
+						Color.clear
+							.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
+					}
+				)
+				.scaleEffect(active ? activeScale : 1, anchor: .topLeading)
+				.offset(x: 0, y: active ? -activeOffset : 0)
 				.onTapGesture { isFocused = true }
 		}
-		.padding(.top, 20)
+		.padding(.top, activeOffset)
 		.onChange(of: text.wrappedValue) { _ in updateActive() }
 		.onChange(of: isFocused) { _ in updateActive() }
+		.onPreferenceChange(HeightPreferenceKey.self) { height in
+			placeholderHeight = height
+			print(height)
+		}
 	}
 	
 	func updateActive() {
