@@ -8,22 +8,21 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct FocusTextField<Placeholder: View>: View {
+public struct FocusTextField<Placeholder: View>: View {
 	
-	@FocusState var isFocused: Bool
+	@FocusState public var isFocused: Bool
 	
-	var text: Binding<String>
-	
-	let placeholder: Placeholder
+	public var text: Binding<String>
+	public let placeholder: Placeholder
 	
 	@State private var active: Bool = false
 	
-	init(text: Binding<String>, @ViewBuilder placeholder: @escaping () -> Placeholder) {
+	public init(text: Binding<String>, @ViewBuilder placeholder: @escaping () -> Placeholder) {
 		self.text = text
 		self.placeholder = placeholder()
 	}
 	
-	var body: some View {
+	public var body: some View {
 		ZStack(alignment: .leading) {
 			TextField("", text: text)
 				.focused($isFocused)

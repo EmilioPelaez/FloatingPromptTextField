@@ -6,11 +6,24 @@
 //
 
 import SwiftUI
+import FocusTextField
 
 struct ContentView: View {
+	@State var text: String = ""
+	
 	var body: some View {
-		Text("Hello, world!")
+		ZStack(alignment: .center) {
+			Color.clear
+			VStack {
+				FocusTextField(text: $text) {
+					Text("Placeholder")
+				}
+			}
 			.padding()
+			.background(Color(.secondarySystemBackground))
+			.cornerRadius(10)
+			.padding()
+		}
 	}
 }
 
