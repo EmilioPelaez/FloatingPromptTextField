@@ -16,9 +16,10 @@ struct ContentView: View {
 	var body: some View {
 		ZStack(alignment: .center) {
 			Color.clear
-			VStack {
+			VStack(spacing: 25) {
 				FocusTextField(text: $text, animation: .spring(), spacing: 5, placeholderScale: 0.5) {
-					Label("Placeholder", systemImage: "square.and.pencil")
+					Label("Enter your text...", systemImage: "square.and.pencil")
+						.opacity(0.5)
 				}
 				.focused($isFocused)
 				HStack {
@@ -26,10 +27,12 @@ struct ContentView: View {
 					Button(action: { isFocused = false }) {
 						Text("Unfocus")
 					}
+					.buttonStyle(BorderedButtonStyle(tint: .red))
 					Spacer()
 					Button(action: { isFocused = true }) {
 						Text("Focus")
 					}
+					.buttonStyle(BorderedButtonStyle(tint: .blue))
 					Spacer()
 				}
 			}
