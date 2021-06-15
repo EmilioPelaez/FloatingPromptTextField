@@ -86,7 +86,6 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 			}
 			.scaleEffect(placeholderState == .floating ? floatingPlaceholderScale : 1, anchor: .topLeading)
 			.offset(x: 0, y: placeholderState == .floating ? -activeOffset : 0)
-			.onTapGesture { isFocused = true }
 		}
 		.padding(.top, activeOffset)
 		.onChange(of: text.wrappedValue) { _ in updateActive() }
@@ -94,6 +93,7 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 		.onPreferenceChange(HeightPreferenceKey.self) { height in
 			placeholderHeight = height
 		}
+		.onTapGesture { isFocused = true }
 	}
 	
 	func updateActive() {
