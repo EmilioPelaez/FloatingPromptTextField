@@ -32,8 +32,6 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	
 	private let textFieldStyle: TextFieldStyle
 	
-	private let animation: Animation
-	
 	private let floatingPlaceholderScale: Double
 	private let spacing: Double
 	
@@ -47,7 +45,6 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
 							textFieldStyle: TextFieldStyle,
-							animation: Animation = .default,
 							spacing: Double = FocusTextFieldDefaultValues.spacing,
 							floatingPlaceholderScale: Double = FocusTextFieldDefaultValues.floatingPlaceholderScale,
 							@ViewBuilder placeholder: () -> Placeholder,
@@ -59,7 +56,6 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 		
 		self.textFieldStyle = textFieldStyle
 		
-		self.animation = animation
 		self.spacing = spacing
 		self.floatingPlaceholderScale = floatingPlaceholderScale
 		
@@ -97,7 +93,7 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	}
 	
 	func updateActive() {
-		withAnimation(animation) {
+		withAnimation {
 			placeholderState = (!text.wrappedValue.isEmpty || isFocused) ? .floating : .normal
 		}
 	}
@@ -107,7 +103,6 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 extension FocusTextField where TextFieldStyle == PrimaryContentStyle {
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
-							animation: Animation = .default,
 							spacing: Double = FocusTextFieldDefaultValues.spacing,
 							floatingPlaceholderScale: Double = FocusTextFieldDefaultValues.floatingPlaceholderScale,
 							@ViewBuilder placeholder: () -> Placeholder,
@@ -115,7 +110,6 @@ extension FocusTextField where TextFieldStyle == PrimaryContentStyle {
 		self.init(text: text,
 							font: font,
 							textFieldStyle: .primary,
-							animation: animation,
 							spacing: spacing,
 							floatingPlaceholderScale: floatingPlaceholderScale,
 							placeholder: placeholder,
@@ -128,14 +122,12 @@ extension FocusTextField where Placeholder == FloatingPlaceholder {
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
 							textFieldStyle: TextFieldStyle,
-							animation: Animation = .default,
 							spacing: Double = FocusTextFieldDefaultValues.spacing,
 							floatingPlaceholderScale: Double = FocusTextFieldDefaultValues.floatingPlaceholderScale,
 							@ViewBuilder placeholder: () -> Placeholder) {
 		self.init(text: text,
 							font: font,
 							textFieldStyle: textFieldStyle,
-							animation: animation,
 							spacing: spacing,
 							floatingPlaceholderScale: floatingPlaceholderScale,
 							placeholder: placeholder,
@@ -154,7 +146,6 @@ extension FocusTextField where TextFieldStyle == PrimaryContentStyle, Placeholde
 		self.init(text: text,
 							font: font,
 							textFieldStyle: FocusTextFieldDefaultValues.textFieldStyle,
-							animation: animation,
 							spacing: spacing,
 							floatingPlaceholderScale: floatingPlaceholderScale,
 							placeholder: placeholder,
