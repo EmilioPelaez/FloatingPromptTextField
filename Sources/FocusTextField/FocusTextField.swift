@@ -16,7 +16,7 @@ public enum FocusTextFieldDefaultValues {
 }
 
 @available(iOS 15.0, *)
-public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextFieldStyle: ShapeStyle>: View {
+public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextFieldForegroundStyle: ShapeStyle>: View {
 	
 	enum PlaceholderState {
 		case normal
@@ -30,7 +30,7 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	private let placeholder: Placeholder
 	private let floatingPlaceholder: FloatingPlaceholder
 	
-	private let textFieldStyle: TextFieldStyle
+	private let textFieldStyle: TextFieldForegroundStyle
 	
 	private let floatingPlaceholderScale: Double
 	private let spacing: Double
@@ -44,7 +44,7 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
-							textFieldStyle: TextFieldStyle,
+							textFieldStyle: TextFieldForegroundStyle,
 							spacing: Double = FocusTextFieldDefaultValues.spacing,
 							floatingPlaceholderScale: Double = FocusTextFieldDefaultValues.floatingPlaceholderScale,
 							@ViewBuilder placeholder: () -> Placeholder,
@@ -100,7 +100,7 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 }
 
 @available(iOS 15.0, *)
-extension FocusTextField where TextFieldStyle == PrimaryContentStyle {
+extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle {
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
 							spacing: Double = FocusTextFieldDefaultValues.spacing,
@@ -121,7 +121,7 @@ extension FocusTextField where TextFieldStyle == PrimaryContentStyle {
 extension FocusTextField where Placeholder == FloatingPlaceholder {
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
-							textFieldStyle: TextFieldStyle,
+							textFieldStyle: TextFieldForegroundStyle,
 							spacing: Double = FocusTextFieldDefaultValues.spacing,
 							floatingPlaceholderScale: Double = FocusTextFieldDefaultValues.floatingPlaceholderScale,
 							@ViewBuilder placeholder: () -> Placeholder) {
@@ -136,7 +136,7 @@ extension FocusTextField where Placeholder == FloatingPlaceholder {
 }
 
 @available(iOS 15.0, *)
-extension FocusTextField where TextFieldStyle == PrimaryContentStyle, Placeholder == FloatingPlaceholder {
+extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, Placeholder == FloatingPlaceholder {
 	public init(text: Binding<String>,
 							font: Font = FocusTextFieldDefaultValues.font,
 							animation: Animation = .default,
