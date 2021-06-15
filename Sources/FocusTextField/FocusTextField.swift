@@ -24,7 +24,7 @@ public struct FocusTextField<Placeholder: View>: View {
 		spacing + placeholderHeight * placeholderScale
 	}
 	
-	@State private var active: Bool = false
+	@State private var isActive: Bool = false
 	@State private var placeholderHeight: Double = 0
 	
 	public init(text: Binding<String>, animation: Animation = .default, spacing: Double = 5, placeholderScale: Double = 0.5, @ViewBuilder placeholder: @escaping () -> Placeholder) {
@@ -34,6 +34,8 @@ public struct FocusTextField<Placeholder: View>: View {
 		self.animation = animation
 		self.spacing = spacing
 		self.placeholderScale = placeholderScale
+		
+		_isActive = State(initialValue: !text.wrappedValue.isEmpty)
 	}
 	
 	public var body: some View {
@@ -47,8 +49,8 @@ public struct FocusTextField<Placeholder: View>: View {
 							.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
 					}
 				)
-				.scaleEffect(active ? placeholderScale : 1, anchor: .topLeading)
-				.offset(x: 0, y: active ? -activeOffset : 0)
+				.scaleEffect(isActive ? placeholderScale : 1, anchor: .topLeading)
+				.offset(x: 0, y: isActive ? -activeOffset : 0)
 				.onTapGesture { isFocused = true }
 		}
 		.padding(.top, activeOffset)
@@ -56,13 +58,12 @@ public struct FocusTextField<Placeholder: View>: View {
 		.onChange(of: isFocused) { _ in updateActive() }
 		.onPreferenceChange(HeightPreferenceKey.self) { height in
 			placeholderHeight = height
-			print(height)
 		}
 	}
 	
 	func updateActive() {
 		withAnimation(animation) {
-			active = !text.wrappedValue.isEmpty || isFocused
+			isActive = !text.wrappedValue.isEmpty || isFocused
 		}
 	}
 }
