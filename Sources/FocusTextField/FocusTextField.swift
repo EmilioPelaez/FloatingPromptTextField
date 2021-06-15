@@ -10,6 +10,11 @@ import SwiftUI
 @available(iOS 15.0, *)
 public struct FocusTextField<Placeholder: View>: View {
 	
+	enum PlaceholderState {
+		case normal
+		case floating
+	}
+	
 	@FocusState private var isFocused: Bool
 	
 	private var text: Binding<String>
@@ -17,25 +22,25 @@ public struct FocusTextField<Placeholder: View>: View {
 	
 	private let animation: Animation
 	
-	private let placeholderScale: Double
+	private let floatingPlaceholderScale: Double
 	private let spacing: Double
 	
 	var activeOffset: Double {
-		spacing + placeholderHeight * placeholderScale
+		spacing + placeholderHeight * floatingPlaceholderScale
 	}
 	
-	@State private var isActive: Bool = false
+	@State private var placeholderState: PlaceholderState
 	@State private var placeholderHeight: Double = 0
 	
-	public init(text: Binding<String>, animation: Animation = .default, spacing: Double = 5, placeholderScale: Double = 0.5, @ViewBuilder placeholder: @escaping () -> Placeholder) {
+	public init(text: Binding<String>, animation: Animation = .default, spacing: Double = 5, floatingPlaceholderScale: Double = 0.5, @ViewBuilder placeholder: @escaping () -> Placeholder) {
 		self.text = text
 		self.placeholder = placeholder()
 		
 		self.animation = animation
 		self.spacing = spacing
-		self.placeholderScale = placeholderScale
+		self.floatingPlaceholderScale = floatingPlaceholderScale
 		
-		_isActive = State(initialValue: !text.wrappedValue.isEmpty)
+		_placeholderState = State(initialValue: text.wrappedValue.isEmpty ? .normal : .floating)
 	}
 	
 	public var body: some View {
@@ -49,8 +54,8 @@ public struct FocusTextField<Placeholder: View>: View {
 							.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
 					}
 				)
-				.scaleEffect(isActive ? placeholderScale : 1, anchor: .topLeading)
-				.offset(x: 0, y: isActive ? -activeOffset : 0)
+				.scaleEffect(placeholderState == .floating ? floatingPlaceholderScale : 1, anchor: .topLeading)
+				.offset(x: 0, y: placeholderState == .floating ? -activeOffset : 0)
 				.onTapGesture { isFocused = true }
 		}
 		.padding(.top, activeOffset)
@@ -63,7 +68,7 @@ public struct FocusTextField<Placeholder: View>: View {
 	
 	func updateActive() {
 		withAnimation(animation) {
-			isActive = !text.wrappedValue.isEmpty || isFocused
+			placeholderState = (!text.wrappedValue.isEmpty || isFocused) ? .floating : .normal
 		}
 	}
 }

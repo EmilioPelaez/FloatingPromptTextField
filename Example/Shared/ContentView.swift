@@ -17,7 +17,7 @@ struct ContentView: View {
 		ZStack(alignment: .center) {
 			Color.clear
 			VStack(spacing: 25) {
-				FocusTextField(text: $text, animation: .spring(), spacing: 5, placeholderScale: 0.5) {
+				FocusTextField(text: $text, animation: .spring(), spacing: 5, floatingPlaceholderScale: 0.5) {
 					Label("Enter your text...", systemImage: "square.and.pencil")
 						.opacity(0.5)
 				}
