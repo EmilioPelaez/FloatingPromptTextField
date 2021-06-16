@@ -12,15 +12,15 @@ public enum FocusTextFieldDefaultValues {
 	public static let font: Font = .body
 	public static let textFieldStyle: PrimaryContentStyle = .primary
 	public static let spacing: Double = 5
-	public static let floatingPlaceholderScale: Double = 0.65
+	public static let activePlaceholderScale: Double = 0.65
 }
 
 @available(iOS 15.0, *)
-public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextFieldForegroundStyle: ShapeStyle>: View {
+public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFieldForegroundStyle: ShapeStyle>: View {
 	
 	enum PlaceholderState {
 		case normal
-		case floating
+		case active
 	}
 	
 	@FocusState private var isFocused: Bool
@@ -28,30 +28,30 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	private var text: Binding<String>
 	private let textFieldStyle: TextFieldForegroundStyle
 	private let placeholder: Placeholder
-	private let floatingPlaceholder: FloatingPlaceholder
+	private let activePlaceholder: ActivePlaceholder
 	
 	fileprivate var font: Font = FocusTextFieldDefaultValues.font
-	fileprivate var floatingPlaceholderScale: Double = FocusTextFieldDefaultValues.floatingPlaceholderScale
+	fileprivate var activePlaceholderScale: Double = FocusTextFieldDefaultValues.activePlaceholderScale
 	fileprivate var placeholderSpacing: Double = FocusTextFieldDefaultValues.spacing
 	
 	var activeOffset: Double {
-		placeholderSpacing + placeholderHeight * floatingPlaceholderScale
+		placeholderSpacing + placeholderHeight * activePlaceholderScale
 	}
 	
 	@State private var placeholderState: PlaceholderState
 	@State private var placeholderHeight: Double = 0
 	
 	public init(text: Binding<String>,
-									 textFieldStyle: TextFieldForegroundStyle,
-									 @ViewBuilder placeholder: () -> Placeholder,
-									 @ViewBuilder floatingPlaceholder: () -> FloatingPlaceholder) {
+							textFieldStyle: TextFieldForegroundStyle,
+							@ViewBuilder placeholder: () -> Placeholder,
+							@ViewBuilder activePlaceholder: () -> ActivePlaceholder) {
 		self.text = text
 		self.placeholder = placeholder()
-		self.floatingPlaceholder = floatingPlaceholder()
+		self.activePlaceholder = activePlaceholder()
 		
 		self.textFieldStyle = textFieldStyle
 		
-		_placeholderState = State(initialValue: text.wrappedValue.isEmpty ? .normal : .floating)
+		_placeholderState = State(initialValue: text.wrappedValue.isEmpty ? .normal : .active)
 	}
 	
 	public var body: some View {
@@ -63,17 +63,17 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 			ZStack(alignment: .leading) {
 				placeholder
 					.opacity(placeholderState == .normal ? 1 : 0)
-				floatingPlaceholder
+				activePlaceholder
 					.background(
 						GeometryReader { proxy in
 						Color.clear
 							.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
 					}
 					)
-					.opacity(placeholderState == .floating ? 1 : 0)
+					.opacity(placeholderState == .active ? 1 : 0)
 			}
-			.scaleEffect(placeholderState == .floating ? floatingPlaceholderScale : 1, anchor: .topLeading)
-			.offset(x: 0, y: placeholderState == .floating ? -activeOffset : 0)
+			.scaleEffect(placeholderState == .active ? activePlaceholderScale : 1, anchor: .topLeading)
+			.offset(x: 0, y: placeholderState == .active ? -activeOffset : 0)
 		}
 		.padding(.top, activeOffset)
 		.onChange(of: text.wrappedValue) { _ in updateActive() }
@@ -86,7 +86,7 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 	
 	func updateActive() {
 		withAnimation {
-			placeholderState = (!text.wrappedValue.isEmpty || isFocused) ? .floating : .normal
+			placeholderState = (!text.wrappedValue.isEmpty || isFocused) ? .active : .normal
 		}
 	}
 }
@@ -94,35 +94,35 @@ public struct FocusTextField<Placeholder: View, FloatingPlaceholder: View, TextF
 @available(iOS 15.0, *)
 extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle {
 	public init(text: Binding<String>,
-									 @ViewBuilder placeholder: () -> Placeholder,
-									 @ViewBuilder floatingPlaceholder: () -> FloatingPlaceholder) {
+							@ViewBuilder placeholder: () -> Placeholder,
+							@ViewBuilder activePlaceholder: () -> ActivePlaceholder) {
 		self.init(text: text,
 							textFieldStyle: .primary,
 							placeholder: placeholder,
-							floatingPlaceholder: floatingPlaceholder)
+							activePlaceholder: activePlaceholder)
 	}
 }
 
 @available(iOS 15.0, *)
-extension FocusTextField where Placeholder == FloatingPlaceholder {
+extension FocusTextField where Placeholder == ActivePlaceholder {
 	public init(text: Binding<String>,
-									 textFieldStyle: TextFieldForegroundStyle,
-									 @ViewBuilder placeholder: () -> Placeholder) {
+							textFieldStyle: TextFieldForegroundStyle,
+							@ViewBuilder placeholder: () -> Placeholder) {
 		self.init(text: text,
 							textFieldStyle: textFieldStyle,
 							placeholder: placeholder,
-							floatingPlaceholder: placeholder)
+							activePlaceholder: placeholder)
 	}
 }
 
 @available(iOS 15.0, *)
-extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, Placeholder == FloatingPlaceholder {
+extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, Placeholder == ActivePlaceholder {
 	public init(text: Binding<String>,
 							@ViewBuilder placeholder: () -> Placeholder) {
 		self.init(text: text,
 							textFieldStyle: FocusTextFieldDefaultValues.textFieldStyle,
 							placeholder: placeholder,
-							floatingPlaceholder: placeholder)
+							activePlaceholder: placeholder)
 	}
 }
 
@@ -134,9 +134,9 @@ extension FocusTextField {
 		return this
 	}
 	
-	public func floatingPlaceholderScale(_ floatingPlaceholderScale: Double) -> Self {
+	public func activePlaceholderScale(_ activePlaceholderScale: Double) -> Self {
 		var this = self
-		this.floatingPlaceholderScale = floatingPlaceholderScale
+		this.activePlaceholderScale = activePlaceholderScale
 		return this
 	}
 	

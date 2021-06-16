@@ -39,20 +39,20 @@ struct ContentView: View {
 				.focused($focus, equals: .two)
 				FocusTextField(text: $textThree) {
 					Label("Input Three", systemImage: "pencil.circle")
-				} floatingPlaceholder: {
+				} activePlaceholder: {
 					Label("Input Three", systemImage: "pencil.circle.fill")
 						.foregroundStyle(Color.blue)
 				}
 				.focused($focus, equals: .three)
 				FocusTextField(text: $textFour, textFieldStyle: Color.red) {
 					Label("Input Four", systemImage: "pencil.circle")
-				} floatingPlaceholder: {
+				} activePlaceholder: {
 					Label("Input Four", systemImage: "pencil.circle.fill")
 						.foregroundStyle(Color.blue)
 				}
 				.textFieldFont(.body)
 				.placeholderSpacing(5)
-				.floatingPlaceholderScale(0.65)
+				.activePlaceholderScale(0.65)
 				.focused($focus, equals: .four)
 				HStack {
 					Spacer()

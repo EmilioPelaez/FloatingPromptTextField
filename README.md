@@ -1,6 +1,6 @@
 # FocusTextField
 
-A TextField with a floating label using the new Focus system on iOS 15
+A TextField with a active label using the new Focus system on iOS 15
 
 <p float="left">
   <img src="./Screenshots/Screenshot0.png" alt="Lock Screen" width=25% height=25%>
@@ -27,30 +27,30 @@ FocusTextField(text: $text) {
 
 ### Customization
 
-The style of the TextField, the Placeholder and the Floating Placeholder are configured during initialization.
+The style of the TextField, the Placeholder and the Active Placeholder are configured during initialization.
 
-Other properties like `font`, the `placeholderSpacing` and the `floatingPlaceholderScale` are configured like view modifiers
+Other properties like `font`, the `placeholderSpacing` and the `activePlaceholderScale` are configured like view modifiers
 
 ```swift
 FocusTextField(text: $text, textFieldStyle: Color.red) {
 	Label("Enter Text", systemImage: "pencil.circle")
-} floatingPlaceholder: {
+} activePlaceholder: {
 	Label("Text", systemImage: "pencil.circle.fill")
 		.foregroundStyle(Color.blue)
 }
 .textFieldFont(.body)
 .placeholderSpacing(5)
-.floatingPlaceholderScale(0.65)
+.activePlaceholderScale(0.65)
 ```
 
 ### Features
 
  * Use any view as the placeholder
- * Use another view as the floating placeholder
+ * Use another view as the active placeholder
  * Set the placeholder scale
  * Set the placeholder spacing
 
 ### To Do
 
- * Move floating placeholder to modifier, if possible
+ * Move active placeholder to modifier, if possible
  * Move text field style to modifier, if possible
