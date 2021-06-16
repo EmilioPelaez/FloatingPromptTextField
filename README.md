@@ -25,19 +25,32 @@ FocusTextField(text: $text) {
 }
 ```
 
+### Customization
+
+The style of the TextField, the Placeholder and the Floating Placeholder are configured during initialization.
+
+Other properties like `font`, the `placeholderSpacing` and the `floatingPlaceholderScale` are configured like view modifiers
+
+```swift
+FocusTextField(text: $text, textFieldStyle: Color.red) {
+	Label("Enter Text", systemImage: "pencil.circle")
+} floatingPlaceholder: {
+	Label("Text", systemImage: "pencil.circle.fill")
+		.foregroundStyle(Color.blue)
+}
+.textFieldFont(.body)
+.placeholderSpacing(5)
+.floatingPlaceholderScale(0.65)
+```
+
 ### Features
 
  * Use any view as the placeholder
+ * Use another view as the floating placeholder
  * Set the placeholder scale
  * Set the placeholder spacing
- * Set the placeholder animation
 
 ### To Do
 
- * Placeholder Active State
- * Match keyboard animation curve (Maybe make animation not customizable?)
- * Make Text Field customizable
-
-### Known Bugs
-
- * Animation looks a bit off when showing/hiding the keyboard
+ * Move floating placeholder to modifier, if possible
+ * Move text field style to modifier, if possible
