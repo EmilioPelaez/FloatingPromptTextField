@@ -50,6 +50,9 @@ struct ContentView: View {
 					Label("Input Four", systemImage: "pencil.circle.fill")
 						.foregroundStyle(Color.blue)
 				}
+				.textFieldFont(.body)
+				.placeholderSpacing(5)
+				.floatingPlaceholderScale(0.65)
 				.focused($focus, equals: .four)
 				HStack {
 					Spacer()
