@@ -7,7 +7,14 @@ A TextField with a floating label using the new Focus system on iOS 15
   <img src="./Screenshots/Screenshot1.png" alt="Import Files" width=25% height=25%>
 </p>
 
-### Usage
+## Features
+
+ * Use any view as the placeholder
+ * Use another view as the active placeholder
+ * Set the placeholder scale
+ * Set the placeholder spacing
+
+## Usage
 
 Usage is as simple as importing `FocusTextField`, declaring a `@State` `String` variable, and initializing `FocusTextField` with a placeholder.
 
@@ -25,11 +32,11 @@ FocusTextField(text: $text) {
 }
 ```
 
-### Customization
+## Customization
 
 All of the customization is done using modifier-style functions. Since these are exclusive to `FocusTextField`, they must be called before calling other modifiers.
 
-#### Customizing the Active Placeholder
+### Customizing the Active Placeholder
 
 The `activePlaceholder` receives a view that will replace the placeholder as it becomes active. For best results it's recommended to use a view that will have the same height as the placeholder. 
 
@@ -45,7 +52,7 @@ FocusTextField(text: $text) {
 )
 ```
 
-#### TextField Font
+### TextField Font
 
 Just like setting a font on a Text view, use the `font` modifier.
 
@@ -56,7 +63,7 @@ FocusTextField(text: $text) {
 .font(.title)
 ```
 
-#### TextField Color/Gradient
+### TextField Color/Gradient
 
 ```swift
 FocusTextField(text: $text) {
@@ -65,7 +72,7 @@ FocusTextField(text: $text) {
 .textFieldForegroundStyle(Color.red)
 ```
 
-#### Active Placeholder Spacing and Scale
+### Active Placeholder Spacing and Scale
 
 `placeholderSpacing` will determine the spacing between the text field and the active placeholder.
 
@@ -79,12 +86,7 @@ FocusTextField(text: $text, textFieldStyle: Color.red) {
 .activePlaceholderScale(0.65)
 ```
 
-### Features
+## To Do
 
- * Use any view as the placeholder
- * Use another view as the active placeholder
- * Set the placeholder scale
- * Set the placeholder spacing
-
-### To Do
-
+ - Accessibility
+ - Support the new TextField initializers that receive a binding that can be formatted.

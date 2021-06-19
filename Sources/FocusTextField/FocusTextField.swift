@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// A text input control with a placeholder that moves or "floats" when it
+/// becomes focused, and for as long as the input text is not empty.
+
 @available(iOS 15.0, *)
 public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFieldForegroundStyle: ShapeStyle>: View {
 	
@@ -109,6 +112,13 @@ extension FocusTextField where Placeholder == ActivePlaceholder {
 
 @available(iOS 15.0, *)
 extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, Placeholder == ActivePlaceholder {
+	/// Creates a FocusTextField with a string binding and a view that will be used as
+	/// a placeholder
+	///
+	/// - Parameters:
+	///   - text: A binding to the text to display and edit.
+	///   - placeholder: A view that will be used as a placeholder when the text field
+	///   is empty, and as a floating label when it's focused or not empty
 	public init(text: Binding<String>,
 							@ViewBuilder placeholder: () -> Placeholder) {
 		self.init(text: text,
@@ -120,12 +130,19 @@ extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, 
 
 @available(iOS 15.0, *)
 extension FocusTextField {
-	public func textFieldFont(_ font: Font) -> Self {
+	/// Sets the font for the text field in this view.
+	///
+	/// - Parameter font: The default font to use in this view.
+	public func font(_ font: Font) -> Self {
 		var this = self
 		this.font = font
 		return this
 	}
 	
+	/// Sets the font for the text field in this view.
+	///
+	/// - Parameter activePlaceholder: The view that will be used as the floating
+	/// placeholder.
 	public func activePlaceholder<Content: View>(_ activePlaceholder: Content) -> FocusTextField<Placeholder, Content, TextFieldForegroundStyle> {
 		FocusTextField<Placeholder, Content, TextFieldForegroundStyle>(
 			text: text,
@@ -135,6 +152,10 @@ extension FocusTextField {
 		)
 	}
 	
+	/// Sets the style for the text field. You can use this to set the color of the
+	/// text in the text field.
+	///
+	/// - Parameter textFieldStyle: The style for the text field.
 	public func textFieldForegroundStyle<Style: ShapeStyle>(_ textFieldStyle: Style) -> FocusTextField<Placeholder, ActivePlaceholder, Style> {
 		FocusTextField<Placeholder, ActivePlaceholder, Style>(
 			text: text,
@@ -144,18 +165,31 @@ extension FocusTextField {
 		)
 	}
 	
+	/// Sets the scale at which the placeholder will be displayed when floating
+	/// over the text field.
+	///
+	/// - Parameter activePlaceholderScale: The scale for the floating placeholder.
 	public func activePlaceholderScale(_ activePlaceholderScale: Double) -> Self {
 		var this = self
 		this.activePlaceholderScale = activePlaceholderScale
 		return this
 	}
 	
+	/// Sets the spacing between the floating placeholder and the text field.
+	///
+	/// - Parameter placeholderSpacing: The spacing in points between the floating
+	/// placeholder and the text field.
 	public func placeholderSpacing(_ placeholderSpacing: Double) -> Self {
 		var this = self
 		this.placeholderSpacing = placeholderSpacing
 		return this
 	}
 	
+	/// Sets whether or not the view will animate its height to accommodate the
+	/// floating placeholder, or if the height of the floating placeholder will
+	/// always be calculated into the height's view.
+	///
+	/// - Parameter animateHeight: The default font to use in this view.
 	public func animateHeight(_ animateHeight: Bool) -> Self {
 		var this = self
 		this.animateHeight = animateHeight
