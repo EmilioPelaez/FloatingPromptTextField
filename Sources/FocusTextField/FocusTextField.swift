@@ -33,13 +33,13 @@ public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFie
 	fileprivate var font: Font = FocusTextFieldDefaultValues.font
 	fileprivate var activePlaceholderScale: Double = FocusTextFieldDefaultValues.activePlaceholderScale
 	fileprivate var placeholderSpacing: Double = FocusTextFieldDefaultValues.spacing
-	
-	var activeOffset: Double {
-		placeholderSpacing + placeholderHeight * activePlaceholderScale
-	}
+	fileprivate var animateHeight: Bool = false
 	
 	@State private var placeholderState: PlaceholderState
 	@State private var placeholderHeight: Double = 0
+	
+	private var activeOffset: Double { placeholderSpacing + placeholderHeight * activePlaceholderScale }
+	private var topMargin: Double { animateHeight && placeholderState == .normal ? 0 : activeOffset }
 	
 	fileprivate init(text: Binding<String>,
 							textFieldStyle: TextFieldForegroundStyle,
@@ -75,7 +75,7 @@ public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFie
 			.scaleEffect(placeholderState == .active ? activePlaceholderScale : 1, anchor: .topLeading)
 			.offset(x: 0, y: placeholderState == .active ? -activeOffset : 0)
 		}
-		.padding(.top, activeOffset)
+		.padding(.top, topMargin)
 		.onChange(of: text.wrappedValue) { _ in updateActive() }
 		.onChange(of: isFocused) { _ in updateActive() }
 		.onPreferenceChange(HeightPreferenceKey.self) { height in
@@ -161,6 +161,12 @@ extension FocusTextField {
 	public func placeholderSpacing(_ placeholderSpacing: Double) -> Self {
 		var this = self
 		this.placeholderSpacing = placeholderSpacing
+		return this
+	}
+	
+	public func animateHeight(_ animateHeight: Bool) -> Self {
+		var this = self
+		this.animateHeight = animateHeight
 		return this
 	}
 }

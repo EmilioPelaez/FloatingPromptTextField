@@ -28,6 +28,7 @@ struct ContentView: View {
 				FocusTextField(text: $textZero) {
 					Label("Input Zero", systemImage: "pencil.circle")
 				}
+				.animateHeight(true)
 				.focused($focus, equals: .zero)
 				FocusTextField(text: $textOne) {
 					Label("Input One", systemImage: "pencil.circle")
