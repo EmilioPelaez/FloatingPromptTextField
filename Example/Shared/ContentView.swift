@@ -26,33 +26,31 @@ struct ContentView: View {
 			Color.clear
 			VStack(spacing: 25) {
 				FocusTextField(text: $textZero) {
-					Label("Input Zero", systemImage: "pencil.circle")
+					Label("Input Zero", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.animateHeight(true)
 				.focused($focus, equals: .zero)
 				FocusTextField(text: $textOne) {
-					Label("Input One", systemImage: "pencil.circle")
+					Label("Input One", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.focused($focus, equals: .one)
 				FocusTextField(text: $textTwo) {
-					Label("Input Two", systemImage: "pencil.circle")
+					Label("Input Two", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.textFieldForegroundStyle(Color.red)
 				.focused($focus, equals: .two)
 				FocusTextField(text: $textThree) {
-					Label("Input Three", systemImage: "pencil.circle")
+					Label("Input Three", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}.activePlaceholder(
-					Label("Input Three", systemImage: "pencil.circle.fill")
-						.foregroundStyle(Color.blue)
+					Label("Input Three", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
 				)
 				.focused($focus, equals: .three)
 				FocusTextField(text: $textFour) {
-					Label("Input Four", systemImage: "pencil.circle")
+					Label("Input Four", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.textFieldForegroundStyle(Color.red)
 				.activePlaceholder(
-					Label("Input Four", systemImage: "pencil.circle.fill")
-						.foregroundStyle(Color.blue)
+					Label("Input Four", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
 				)
 				.font(.body)
 				.placeholderSpacing(5)
