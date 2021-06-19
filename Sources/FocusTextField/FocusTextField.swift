@@ -8,14 +8,6 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-public enum FocusTextFieldDefaultValues {
-	public static let font: Font = .body
-	public static let textFieldStyle: PrimaryContentStyle = .primary
-	public static let spacing: Double = 5
-	public static let activePlaceholderScale: Double = 0.65
-}
-
-@available(iOS 15.0, *)
 public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFieldForegroundStyle: ShapeStyle>: View {
 	
 	enum PlaceholderState {
@@ -30,9 +22,9 @@ public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFie
 	private let placeholder: Placeholder
 	private let activePlaceholder: ActivePlaceholder
 	
-	fileprivate var font: Font = FocusTextFieldDefaultValues.font
-	fileprivate var activePlaceholderScale: Double = FocusTextFieldDefaultValues.activePlaceholderScale
-	fileprivate var placeholderSpacing: Double = FocusTextFieldDefaultValues.spacing
+	fileprivate var font: Font = .body
+	fileprivate var activePlaceholderScale: Double = 0.65
+	fileprivate var placeholderSpacing: Double = 5
 	fileprivate var animateHeight: Bool = false
 	
 	@State private var placeholderState: PlaceholderState
@@ -120,7 +112,7 @@ extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, 
 	public init(text: Binding<String>,
 							@ViewBuilder placeholder: () -> Placeholder) {
 		self.init(text: text,
-							textFieldStyle: FocusTextFieldDefaultValues.textFieldStyle,
+							textFieldStyle: .primary,
 							placeholder: placeholder,
 							activePlaceholder: placeholder)
 	}
