@@ -33,23 +33,26 @@ struct ContentView: View {
 					Label("Input One", systemImage: "pencil.circle")
 				}
 				.focused($focus, equals: .one)
-				FocusTextField(text: $textTwo, textFieldStyle: Color.red) {
+				FocusTextField(text: $textTwo) {
 					Label("Input Two", systemImage: "pencil.circle")
 				}
+				.textFieldForegroundStyle(Color.red)
 				.focused($focus, equals: .two)
 				FocusTextField(text: $textThree) {
 					Label("Input Three", systemImage: "pencil.circle")
-				} activePlaceholder: {
+				}.activePlaceholder(
 					Label("Input Three", systemImage: "pencil.circle.fill")
 						.foregroundStyle(Color.blue)
-				}
+				)
 				.focused($focus, equals: .three)
-				FocusTextField(text: $textFour, textFieldStyle: Color.red) {
+				FocusTextField(text: $textFour) {
 					Label("Input Four", systemImage: "pencil.circle")
-				} activePlaceholder: {
+				}
+				.textFieldForegroundStyle(Color.red)
+				.activePlaceholder(
 					Label("Input Four", systemImage: "pencil.circle.fill")
 						.foregroundStyle(Color.blue)
-				}
+				)
 				.textFieldFont(.body)
 				.placeholderSpacing(5)
 				.activePlaceholderScale(0.65)

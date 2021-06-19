@@ -1,6 +1,6 @@
 # FocusTextField
 
-A TextField with a active label using the new Focus system on iOS 15
+A TextField with a floating label using the new Focus system on iOS 15
 
 <p float="left">
   <img src="./Screenshots/Screenshot0.png" alt="Lock Screen" width=25% height=25%>
@@ -27,18 +27,54 @@ FocusTextField(text: $text) {
 
 ### Customization
 
-The style of the TextField, the Placeholder and the Active Placeholder are configured during initialization.
+All of the customization is done using modifier-style functions. Since these are exclusive to `FocusTextField`, they must be called before calling other modifiers.
 
-Other properties like `font`, the `placeholderSpacing` and the `activePlaceholderScale` are configured like view modifiers
+#### Customizing the Active Placeholder
+
+The `activePlaceholder` receives a view that will replace the placeholder as it becomes active. For best results it's recommended to use a view that will have the same height as the placeholder. 
+
+In this example we use a `Text` view with the same font but different contents and foreground styles. 
+
+```swift
+FocusTextField(text: $text) {
+	Text("Placeholder")
+}
+.activePlaceholder(
+	Text("Active Placeholder")
+		.foregroundStyle(Color.blue)
+)
+```
+
+#### TextField Font
+
+Just like setting a font on a Text view, use the `font` modifier.
+
+```swift
+FocusTextField(text: $text) {
+	Text("Placeholder")
+}
+.font(.title)
+```
+
+#### TextField Color/Gradient
+
+```swift
+FocusTextField(text: $text) {
+	Text("Placeholder")
+}
+.textFieldForegroundStyle(Color.red)
+```
+
+#### Active Placeholder Spacing and Scale
+
+`placeholderSpacing` will determine the spacing between the text field and the active placeholder.
+
+`activePlaceholderScale` will determine the scale that will be used when the placeholder becomes a floating label.
 
 ```swift
 FocusTextField(text: $text, textFieldStyle: Color.red) {
 	Label("Enter Text", systemImage: "pencil.circle")
-} activePlaceholder: {
-	Label("Text", systemImage: "pencil.circle.fill")
-		.foregroundStyle(Color.blue)
 }
-.textFieldFont(.body)
 .placeholderSpacing(5)
 .activePlaceholderScale(0.65)
 ```
@@ -52,5 +88,3 @@ FocusTextField(text: $text, textFieldStyle: Color.red) {
 
 ### To Do
 
- * Move active placeholder to modifier, if possible
- * Move text field style to modifier, if possible

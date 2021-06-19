@@ -41,7 +41,7 @@ public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFie
 	@State private var placeholderState: PlaceholderState
 	@State private var placeholderHeight: Double = 0
 	
-	public init(text: Binding<String>,
+	fileprivate init(text: Binding<String>,
 							textFieldStyle: TextFieldForegroundStyle,
 							@ViewBuilder placeholder: () -> Placeholder,
 							@ViewBuilder activePlaceholder: () -> ActivePlaceholder) {
@@ -93,7 +93,7 @@ public struct FocusTextField<Placeholder: View, ActivePlaceholder: View, TextFie
 
 @available(iOS 15.0, *)
 extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle {
-	public init(text: Binding<String>,
+	fileprivate  init(text: Binding<String>,
 							@ViewBuilder placeholder: () -> Placeholder,
 							@ViewBuilder activePlaceholder: () -> ActivePlaceholder) {
 		self.init(text: text,
@@ -105,7 +105,7 @@ extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle {
 
 @available(iOS 15.0, *)
 extension FocusTextField where Placeholder == ActivePlaceholder {
-	public init(text: Binding<String>,
+	fileprivate  init(text: Binding<String>,
 							textFieldStyle: TextFieldForegroundStyle,
 							@ViewBuilder placeholder: () -> Placeholder) {
 		self.init(text: text,
@@ -132,6 +132,24 @@ extension FocusTextField {
 		var this = self
 		this.font = font
 		return this
+	}
+	
+	public func activePlaceholder<Content: View>(_ activePlaceholder: Content) -> FocusTextField<Placeholder, Content, TextFieldForegroundStyle> {
+		FocusTextField<Placeholder, Content, TextFieldForegroundStyle>(
+			text: text,
+			textFieldStyle: textFieldStyle,
+			placeholder: { placeholder },
+			activePlaceholder: { activePlaceholder }
+		)
+	}
+	
+	public func textFieldForegroundStyle<Style: ShapeStyle>(_ textFieldStyle: Style) -> FocusTextField<Placeholder, ActivePlaceholder, Style> {
+		FocusTextField<Placeholder, ActivePlaceholder, Style>(
+			text: text,
+			textFieldStyle: textFieldStyle,
+			placeholder: { placeholder },
+			activePlaceholder: { activePlaceholder }
+		)
 	}
 	
 	public func activePlaceholderScale(_ activePlaceholderScale: Double) -> Self {
