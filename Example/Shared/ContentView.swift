@@ -25,9 +25,7 @@ struct ContentView: View {
 		ZStack(alignment: .center) {
 			Color.clear
 			VStack(spacing: 25) {
-				FocusTextField(text: $textZero) {
-					Label("Input Zero", systemImage: "pencil.circle").foregroundStyle(.secondary)
-				}
+				FocusTextField(text: $textZero, placeholder: Text("Input Zero"))
 				.animateHeight(true)
 				.focused($focus, equals: .zero)
 				FocusTextField(text: $textOne) {

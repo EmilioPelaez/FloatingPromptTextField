@@ -129,6 +129,23 @@ extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, 
 }
 
 @available(iOS 15.0, *)
+extension FocusTextField where TextFieldForegroundStyle == PrimaryContentStyle, Placeholder == Text, ActivePlaceholder == Text {
+	/// Creates a FocusTextField with a string binding and a view that will be used as
+	/// a placeholder
+	///
+	/// - Parameters:
+	///   - text: A binding to the text to display and edit.
+	///   - placeholder: A Text view that will be used as a placeholder when the text field
+	///   is empty, and as a floating label when it's focused or not empty
+	public init(text: Binding<String>, placeholder: Text) {
+		self.init(text: text,
+							textFieldStyle: .primary,
+							placeholder: { placeholder.foregroundColor(.secondary) },
+							activePlaceholder: { placeholder.foregroundColor(.primary) })
+	}
+}
+
+@available(iOS 15.0, *)
 extension FocusTextField {
 	/// Sets the font for the text field in this view.
 	///
