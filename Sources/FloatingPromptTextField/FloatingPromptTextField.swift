@@ -112,13 +112,13 @@ extension FloatingPromptTextField where Prompt == FloatingPrompt {
 
 @available(iOS 15.0, *)
 extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryContentStyle, Prompt == FloatingPrompt {
-	/// Creates a FloatingPromptTextField with a string binding and a view that will be used as
-	/// a prompt
+	/// Creates a FloatingPromptTextField with a string binding and a view that will be used
+	/// as the prompt.
 	///
 	/// - Parameters:
 	///   - text: A binding to the text to display and edit.
 	///   - prompt: A view that will be used as a prompt when the text field
-	///   is empty, and as a floating label when it's focused or not empty
+	///   is empty, and as a floating prompt when it's focused or not empty,
 	public init(text: Binding<String>,
 							@ViewBuilder prompt: () -> Prompt) {
 		self.init(text: text,
@@ -130,13 +130,13 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryConte
 
 @available(iOS 15.0, *)
 extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryContentStyle, Prompt == Text, FloatingPrompt == Text {
-	/// Creates a FloatingPromptTextField with a string binding and a view that will be used as
-	/// a prompt
+	/// Creates a FloatingPromptTextField with a string binding and a Text view that will be
+	/// used as the prompt.
 	///
 	/// - Parameters:
 	///   - text: A binding to the text to display and edit.
 	///   - prompt: A Text view that will be used as a prompt when the text field
-	///   is empty, and as a floating label when it's focused or not empty
+	///   is empty, and as a floating prompt when it's focused or not empty.
 	public init(text: Binding<String>, prompt: Text) {
 		self.init(text: text,
 							textFieldStyle: .primary,
@@ -149,17 +149,18 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryConte
 extension FloatingPromptTextField {
 	/// Sets the font for the text field in this view.
 	///
-	/// - Parameter font: The default font to use in this view.
+	/// - Parameter font: The font for the text field.
 	public func font(_ font: Font) -> Self {
 		var this = self
 		this.font = font
 		return this
 	}
 	
-	/// Sets the font for the text field in this view.
+	/// A `View` to be used as the floating prompt when the text field is focused
+	/// or not empty.
 	///
 	/// - Parameter floatingPrompt: The view that will be used as the floating
-	/// prompt.
+	/// prompt when the text field is focused or not empty.
 	public func floatingPrompt<Content: View>(_ floatingPrompt: Content) -> FloatingPromptTextField<Prompt, Content, TextFieldForegroundStyle> {
 		FloatingPromptTextField<Prompt, Content, TextFieldForegroundStyle>(
 			text: text,
@@ -206,7 +207,8 @@ extension FloatingPromptTextField {
 	/// floating prompt, or if the height of the floating prompt will
 	/// always be calculated into the height's view.
 	///
-	/// - Parameter animateHeight: The default font to use in this view.
+	/// - Parameter animateHeight: Whether or not the view will animate its
+	/// height to accommodate the floating prompt.
 	public func animateHeight(_ animateHeight: Bool) -> Self {
 		var this = self
 		this.animateHeight = animateHeight
