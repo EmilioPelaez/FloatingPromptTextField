@@ -4,19 +4,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "FocusTextField",
+    name: "FloatingPromptTextField",
     products: [
         .library(
-            name: "FocusTextField",
-            targets: ["FocusTextField"]),
+            name: "FloatingPromptTextField",
+            targets: ["FloatingPromptTextField"]),
     ],
     dependencies: [],
 		targets: [
         .target(
-            name: "FocusTextField",
+            name: "FloatingPromptTextField",
             dependencies: []),
         .testTarget(
-            name: "FocusTextFieldTests",
-            dependencies: ["FocusTextField"]),
+            name: "FloatingPromptTextFieldTests",
+            dependencies: ["FloatingPromptTextField"]),
     ]
 )

@@ -2,11 +2,11 @@
 //  ContentView.swift
 //  Shared
 //
-//  Created by Emilio Peláez on 14/6/21.
+//  Created by Emilio Peláez on 20/6/21.
 //
 
 import SwiftUI
-import FocusTextField
+import FloatingPromptTextField
 
 struct ContentView: View {
 	@State var textZero: String = ""
@@ -25,34 +25,34 @@ struct ContentView: View {
 		ZStack(alignment: .center) {
 			Color.clear
 			VStack(spacing: 25) {
-				FocusTextField(text: $textZero, placeholder: Text("Input Zero"))
+				FloatingPromptTextField(text: $textZero, prompt: Text("Input Zero"))
 				.animateHeight(true)
 				.focused($focus, equals: .zero)
-				FocusTextField(text: $textOne) {
+				FloatingPromptTextField(text: $textOne) {
 					Label("Input One", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.focused($focus, equals: .one)
-				FocusTextField(text: $textTwo) {
+				FloatingPromptTextField(text: $textTwo) {
 					Label("Input Two", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.textFieldForegroundStyle(Color.red)
 				.focused($focus, equals: .two)
-				FocusTextField(text: $textThree) {
+				FloatingPromptTextField(text: $textThree) {
 					Label("Input Three", systemImage: "pencil.circle").foregroundStyle(.secondary)
-				}.activePlaceholder(
+				}.floatingPrompt(
 					Label("Input Three", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
 				)
 				.focused($focus, equals: .three)
-				FocusTextField(text: $textFour) {
+				FloatingPromptTextField(text: $textFour) {
 					Label("Input Four", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.textFieldForegroundStyle(Color.red)
-				.activePlaceholder(
+				.floatingPrompt(
 					Label("Input Four", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
 				)
 				.font(.body)
-				.placeholderSpacing(5)
-				.activePlaceholderScale(0.65)
+				.promptSpacing(5)
+				.floatingPromptScale(0.65)
 				.focused($focus, equals: .four)
 				HStack {
 					Spacer()

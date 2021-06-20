@@ -7,34 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C834A2E326775EEF00211F41 /* FocusTextFieldExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C834A2D526775EED00211F41 /* FocusTextFieldExampleApp.swift */; };
-		C834A2E426775EEF00211F41 /* FocusTextFieldExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C834A2D526775EED00211F41 /* FocusTextFieldExampleApp.swift */; };
-		C834A2E526775EEF00211F41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C834A2D626775EED00211F41 /* ContentView.swift */; };
-		C834A2E626775EEF00211F41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C834A2D626775EED00211F41 /* ContentView.swift */; };
-		C834A2E726775EEF00211F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C834A2D726775EEF00211F41 /* Assets.xcassets */; };
-		C834A2E826775EEF00211F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C834A2D726775EEF00211F41 /* Assets.xcassets */; };
-		C834A2F526775F3200211F41 /* FocusTextField in Frameworks */ = {isa = PBXBuildFile; productRef = C834A2F426775F3200211F41 /* FocusTextField */; };
+		C80429FB267F76C70093774C /* FloatingPromptTextFieldExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80429ED267F76C60093774C /* FloatingPromptTextFieldExampleApp.swift */; };
+		C80429FC267F76C70093774C /* FloatingPromptTextFieldExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80429ED267F76C60093774C /* FloatingPromptTextFieldExampleApp.swift */; };
+		C80429FD267F76C70093774C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80429EE267F76C60093774C /* ContentView.swift */; };
+		C80429FE267F76C70093774C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80429EE267F76C60093774C /* ContentView.swift */; };
+		C80429FF267F76C70093774C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80429EF267F76C70093774C /* Assets.xcassets */; };
+		C8042A00267F76C70093774C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80429EF267F76C70093774C /* Assets.xcassets */; };
+		C8042A0D267F77100093774C /* FloatingPromptTextField in Frameworks */ = {isa = PBXBuildFile; productRef = C8042A0C267F77100093774C /* FloatingPromptTextField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C834A2D526775EED00211F41 /* FocusTextFieldExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextFieldExampleApp.swift; sourceTree = "<group>"; };
-		C834A2D626775EED00211F41 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C834A2D726775EEF00211F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C834A2DC26775EEF00211F41 /* FocusTextFieldExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusTextFieldExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C834A2E226775EEF00211F41 /* FocusTextFieldExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusTextFieldExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C834A2F226775F2300211F41 /* FocusTextField */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FocusTextField; path = ..; sourceTree = "<group>"; };
+		C80429ED267F76C60093774C /* FloatingPromptTextFieldExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPromptTextFieldExampleApp.swift; sourceTree = "<group>"; };
+		C80429EE267F76C60093774C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C80429EF267F76C70093774C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C80429F4267F76C70093774C /* FloatingPromptTextFieldExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingPromptTextFieldExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80429FA267F76C70093774C /* FloatingPromptTextFieldExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingPromptTextFieldExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8042A0A267F76E30093774C /* FocusTextField */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FocusTextField; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C834A2D926775EEF00211F41 /* Frameworks */ = {
+		C80429F1267F76C70093774C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C834A2F526775F3200211F41 /* FocusTextField in Frameworks */,
+				C8042A0D267F77100093774C /* FloatingPromptTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C834A2DF26775EEF00211F41 /* Frameworks */ = {
+		C80429F7267F76C70093774C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,44 +44,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C834A2CF26775EED00211F41 = {
+		C80429E7267F76C60093774C = {
 			isa = PBXGroup;
 			children = (
-				C834A2D426775EED00211F41 /* Shared */,
-				C834A2DD26775EEF00211F41 /* Products */,
-				C834A2F126775F2300211F41 /* Packages */,
-				C834A2F326775F3200211F41 /* Frameworks */,
+				C80429EC267F76C60093774C /* Shared */,
+				C8042A09267F76E30093774C /* Packages */,
+				C80429F5267F76C70093774C /* Products */,
+				C8042A0B267F77100093774C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		C834A2D426775EED00211F41 /* Shared */ = {
+		C80429EC267F76C60093774C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				C834A2D526775EED00211F41 /* FocusTextFieldExampleApp.swift */,
-				C834A2D626775EED00211F41 /* ContentView.swift */,
-				C834A2D726775EEF00211F41 /* Assets.xcassets */,
+				C80429ED267F76C60093774C /* FloatingPromptTextFieldExampleApp.swift */,
+				C80429EE267F76C60093774C /* ContentView.swift */,
+				C80429EF267F76C70093774C /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		C834A2DD26775EEF00211F41 /* Products */ = {
+		C80429F5267F76C70093774C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C834A2DC26775EEF00211F41 /* FocusTextFieldExample.app */,
-				C834A2E226775EEF00211F41 /* FocusTextFieldExample.app */,
+				C80429F4267F76C70093774C /* FloatingPromptTextFieldExample.app */,
+				C80429FA267F76C70093774C /* FloatingPromptTextFieldExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C834A2F126775F2300211F41 /* Packages */ = {
+		C8042A09267F76E30093774C /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				C834A2F226775F2300211F41 /* FocusTextField */,
+				C8042A0A267F76E30093774C /* FocusTextField */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
 		};
-		C834A2F326775F3200211F41 /* Frameworks */ = {
+		C8042A0B267F77100093774C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -91,62 +91,62 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C834A2DB26775EEF00211F41 /* FocusTextFieldExample (iOS) */ = {
+		C80429F3267F76C70093774C /* FloatingPromptTextFieldExample (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C834A2EB26775EEF00211F41 /* Build configuration list for PBXNativeTarget "FocusTextFieldExample (iOS)" */;
+			buildConfigurationList = C8042A03267F76C70093774C /* Build configuration list for PBXNativeTarget "FloatingPromptTextFieldExample (iOS)" */;
 			buildPhases = (
-				C834A2D826775EEF00211F41 /* Sources */,
-				C834A2D926775EEF00211F41 /* Frameworks */,
-				C834A2DA26775EEF00211F41 /* Resources */,
+				C80429F0267F76C70093774C /* Sources */,
+				C80429F1267F76C70093774C /* Frameworks */,
+				C80429F2267F76C70093774C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "FocusTextFieldExample (iOS)";
+			name = "FloatingPromptTextFieldExample (iOS)";
 			packageProductDependencies = (
-				C834A2F426775F3200211F41 /* FocusTextField */,
+				C8042A0C267F77100093774C /* FloatingPromptTextField */,
 			);
-			productName = "FocusTextFieldExample (iOS)";
-			productReference = C834A2DC26775EEF00211F41 /* FocusTextFieldExample.app */;
+			productName = "FloatingPromptTextFieldExample (iOS)";
+			productReference = C80429F4267F76C70093774C /* FloatingPromptTextFieldExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C834A2E126775EEF00211F41 /* FocusTextFieldExample (macOS) */ = {
+		C80429F9267F76C70093774C /* FloatingPromptTextFieldExample (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C834A2EE26775EEF00211F41 /* Build configuration list for PBXNativeTarget "FocusTextFieldExample (macOS)" */;
+			buildConfigurationList = C8042A06267F76C70093774C /* Build configuration list for PBXNativeTarget "FloatingPromptTextFieldExample (macOS)" */;
 			buildPhases = (
-				C834A2DE26775EEF00211F41 /* Sources */,
-				C834A2DF26775EEF00211F41 /* Frameworks */,
-				C834A2E026775EEF00211F41 /* Resources */,
+				C80429F6267F76C70093774C /* Sources */,
+				C80429F7267F76C70093774C /* Frameworks */,
+				C80429F8267F76C70093774C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "FocusTextFieldExample (macOS)";
-			productName = "FocusTextFieldExample (macOS)";
-			productReference = C834A2E226775EEF00211F41 /* FocusTextFieldExample.app */;
+			name = "FloatingPromptTextFieldExample (macOS)";
+			productName = "FloatingPromptTextFieldExample (macOS)";
+			productReference = C80429FA267F76C70093774C /* FloatingPromptTextFieldExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C834A2D026775EED00211F41 /* Project object */ = {
+		C80429E8267F76C60093774C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					C834A2DB26775EEF00211F41 = {
+					C80429F3267F76C70093774C = {
 						CreatedOnToolsVersion = 13.0;
 					};
-					C834A2E126775EEF00211F41 = {
+					C80429F9267F76C70093774C = {
 						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
-			buildConfigurationList = C834A2D326775EED00211F41 /* Build configuration list for PBXProject "FocusTextFieldExample" */;
+			buildConfigurationList = C80429EB267F76C60093774C /* Build configuration list for PBXProject "FloatingPromptTextFieldExample" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,59 +154,59 @@
 				en,
 				Base,
 			);
-			mainGroup = C834A2CF26775EED00211F41;
-			productRefGroup = C834A2DD26775EEF00211F41 /* Products */;
+			mainGroup = C80429E7267F76C60093774C;
+			productRefGroup = C80429F5267F76C70093774C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C834A2DB26775EEF00211F41 /* FocusTextFieldExample (iOS) */,
-				C834A2E126775EEF00211F41 /* FocusTextFieldExample (macOS) */,
+				C80429F3267F76C70093774C /* FloatingPromptTextFieldExample (iOS) */,
+				C80429F9267F76C70093774C /* FloatingPromptTextFieldExample (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C834A2DA26775EEF00211F41 /* Resources */ = {
+		C80429F2267F76C70093774C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C834A2E726775EEF00211F41 /* Assets.xcassets in Resources */,
+				C80429FF267F76C70093774C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C834A2E026775EEF00211F41 /* Resources */ = {
+		C80429F8267F76C70093774C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C834A2E826775EEF00211F41 /* Assets.xcassets in Resources */,
+				C8042A00267F76C70093774C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C834A2D826775EEF00211F41 /* Sources */ = {
+		C80429F0267F76C70093774C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C834A2E526775EEF00211F41 /* ContentView.swift in Sources */,
-				C834A2E326775EEF00211F41 /* FocusTextFieldExampleApp.swift in Sources */,
+				C80429FD267F76C70093774C /* ContentView.swift in Sources */,
+				C80429FB267F76C70093774C /* FloatingPromptTextFieldExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C834A2DE26775EEF00211F41 /* Sources */ = {
+		C80429F6267F76C70093774C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C834A2E626775EEF00211F41 /* ContentView.swift in Sources */,
-				C834A2E426775EEF00211F41 /* FocusTextFieldExampleApp.swift in Sources */,
+				C80429FE267F76C70093774C /* ContentView.swift in Sources */,
+				C80429FC267F76C70093774C /* FloatingPromptTextFieldExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		C834A2E926775EEF00211F41 /* Debug */ = {
+		C8042A01267F76C70093774C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -265,7 +265,7 @@
 			};
 			name = Debug;
 		};
-		C834A2EA26775EEF00211F41 /* Release */ = {
+		C8042A02267F76C70093774C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -317,7 +317,7 @@
 			};
 			name = Release;
 		};
-		C834A2EC26775EEF00211F41 /* Debug */ = {
+		C8042A04267F76C70093774C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -338,8 +338,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FocusTextFieldExample;
-				PRODUCT_NAME = FocusTextFieldExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FloatingPromptTextFieldExample;
+				PRODUCT_NAME = FloatingPromptTextFieldExample;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -347,7 +347,7 @@
 			};
 			name = Debug;
 		};
-		C834A2ED26775EEF00211F41 /* Release */ = {
+		C8042A05267F76C70093774C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -368,8 +368,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FocusTextFieldExample;
-				PRODUCT_NAME = FocusTextFieldExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FloatingPromptTextFieldExample;
+				PRODUCT_NAME = FloatingPromptTextFieldExample;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -378,7 +378,7 @@
 			};
 			name = Release;
 		};
-		C834A2EF26775EEF00211F41 /* Debug */ = {
+		C8042A07267F76C70093774C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -399,15 +399,15 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FocusTextFieldExample;
-				PRODUCT_NAME = FocusTextFieldExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FloatingPromptTextFieldExample;
+				PRODUCT_NAME = FloatingPromptTextFieldExample;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		C834A2F026775EEF00211F41 /* Release */ = {
+		C8042A08267F76C70093774C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -428,8 +428,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FocusTextFieldExample;
-				PRODUCT_NAME = FocusTextFieldExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.FloatingPromptTextFieldExample;
+				PRODUCT_NAME = FloatingPromptTextFieldExample;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -439,29 +439,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C834A2D326775EED00211F41 /* Build configuration list for PBXProject "FocusTextFieldExample" */ = {
+		C80429EB267F76C60093774C /* Build configuration list for PBXProject "FloatingPromptTextFieldExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C834A2E926775EEF00211F41 /* Debug */,
-				C834A2EA26775EEF00211F41 /* Release */,
+				C8042A01267F76C70093774C /* Debug */,
+				C8042A02267F76C70093774C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C834A2EB26775EEF00211F41 /* Build configuration list for PBXNativeTarget "FocusTextFieldExample (iOS)" */ = {
+		C8042A03267F76C70093774C /* Build configuration list for PBXNativeTarget "FloatingPromptTextFieldExample (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C834A2EC26775EEF00211F41 /* Debug */,
-				C834A2ED26775EEF00211F41 /* Release */,
+				C8042A04267F76C70093774C /* Debug */,
+				C8042A05267F76C70093774C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C834A2EE26775EEF00211F41 /* Build configuration list for PBXNativeTarget "FocusTextFieldExample (macOS)" */ = {
+		C8042A06267F76C70093774C /* Build configuration list for PBXNativeTarget "FloatingPromptTextFieldExample (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C834A2EF26775EEF00211F41 /* Debug */,
-				C834A2F026775EEF00211F41 /* Release */,
+				C8042A07267F76C70093774C /* Debug */,
+				C8042A08267F76C70093774C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -469,11 +469,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C834A2F426775F3200211F41 /* FocusTextField */ = {
+		C8042A0C267F77100093774C /* FloatingPromptTextField */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = FocusTextField;
+			productName = FloatingPromptTextField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = C834A2D026775EED00211F41 /* Project object */;
+	rootObject = C80429E8267F76C60093774C /* Project object */;
 }
