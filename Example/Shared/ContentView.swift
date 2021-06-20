@@ -39,7 +39,8 @@ struct ContentView: View {
 				.focused($focus, equals: .two)
 				FloatingPromptTextField(text: $textThree) {
 					Label("Input Three", systemImage: "pencil.circle").foregroundStyle(.secondary)
-				}.floatingPrompt(
+				}
+				.floatingPrompt(
 					Label("Input Three", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
 				)
 				.focused($focus, equals: .three)
