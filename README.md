@@ -7,8 +7,7 @@ A "floating" prompt/label/placeholder is a UX pattern pioneered by [JVFloatLabel
 `FloatingPromptTextField` is a SwiftUI version of this UI component. It uses the new Focus system and because of it requires iOS 15. 
 
 <p float="left">
-  <img src="./Screenshots/Screenshot0.png" alt="Lock Screen" width=25% height=25%>
-  <img src="./Screenshots/Screenshot1.png" alt="Import Files" width=25% height=25%>
+  <img src="./Screenshots/Capture.gif" alt="Lock Screen" width=40% height=40%>
 </p>
 
 ## Features
