@@ -1,6 +1,10 @@
 # FloatingPromptTextField
 
-A TextField with a floating label using the new Focus system on iOS 15
+A prompt is the label in a text field that informs the user about the kind of content the text field expects. In a default `TextField` it disappears when the user starts typing, hiding this important information.
+
+A "floating" prompt/label/placeholder is a UX pattern pioneered by [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField) where the prompt floats over the text field when it becomes active, keeping this useful information visible even after the user has begun typing.
+
+`FloatingPromptTextField` is a SwiftUI version of this UI component. It uses the new Focus system and because of it requires iOS 15. 
 
 <p float="left">
   <img src="./Screenshots/Screenshot0.png" alt="Lock Screen" width=25% height=25%>
@@ -9,8 +13,9 @@ A TextField with a floating label using the new Focus system on iOS 15
 
 ## Features
 
- * Use any view as the prompt
- * Use another view as the floating prompt
+ * Use a `Text` view as the prompt
+ * Use any `View` as the prompt
+ * Use a different `View` as the floating prompt
  * Set the floating prompt scale
  * Set the floating prompt spacing
 
@@ -59,19 +64,15 @@ FloatingPromptTextField(text: $text) {
 Just like setting a font on a Text view, use the `font` modifier.
 
 ```swift
-FloatingPromptTextField(text: $text) {
-	Text("Prompt")
-}
-.font(.title)
+FloatingPromptTextField(text: $text, prompt: Text("Prompt"))
+	.font(.title)
 ```
 
 ### TextField Color/Gradient
 
 ```swift
-FloatingPromptTextField(text: $text) {
-	Text("Prompt")
-}
-.textFieldForegroundStyle(Color.red)
+FloatingPromptTextField(text: $text, prompt: Text("Prompt"))
+	.textFieldForegroundStyle(Color.red)
 ```
 
 ### Floating Prompt Spacing and Scale
@@ -81,11 +82,9 @@ FloatingPromptTextField(text: $text) {
 `floatingPromptScale` will determine the scale that will be used when the prompt becomes a floating label.
 
 ```swift
-FloatingPromptTextField(text: $text, textFieldStyle: Color.red) {
-	Label("Enter Text", systemImage: "pencil.circle")
-}
-.promptSpacing(5)
-.floatingPromptScale(0.65)
+FloatingPromptTextField(text: $text, prompt: Text("Prompt"))
+	.promptSpacing(5)
+	.floatingPromptScale(0.65)
 ```
 
 ## To Do
