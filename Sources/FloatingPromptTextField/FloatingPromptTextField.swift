@@ -87,7 +87,7 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 }
 
 @available(iOS 15.0, *)
-extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryContentStyle {
+extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle {
 	fileprivate  init(text: Binding<String>,
 							@ViewBuilder prompt: () -> Prompt,
 							@ViewBuilder floatingPrompt: () -> FloatingPrompt) {
@@ -111,7 +111,7 @@ extension FloatingPromptTextField where Prompt == FloatingPrompt {
 }
 
 @available(iOS 15.0, *)
-extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryContentStyle, Prompt == FloatingPrompt {
+extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle, Prompt == FloatingPrompt {
 	/// Creates a FloatingPromptTextField with a string binding and a view that will be used
 	/// as the prompt.
 	///
@@ -129,7 +129,7 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryConte
 }
 
 @available(iOS 15.0, *)
-extension FloatingPromptTextField where TextFieldForegroundStyle == PrimaryContentStyle, Prompt == Text, FloatingPrompt == Text {
+extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle, Prompt == Text, FloatingPrompt == Text {
 	/// Creates a FloatingPromptTextField with a string binding and a Text view that will be
 	/// used as the prompt.
 	///

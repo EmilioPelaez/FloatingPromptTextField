@@ -60,7 +60,7 @@ struct ContentView: View {
 					Button(action: { focus = nil }) {
 						Text("Unfocus")
 					}
-					.buttonStyle(BorderedButtonStyle(tint: .red))
+					.buttonStyle(.bordered)
 					Spacer()
 				}
 			}
