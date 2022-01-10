@@ -26,7 +26,7 @@ struct ContentView: View {
 			Color.clear
 			VStack(spacing: 25) {
 				FloatingPromptTextField(text: $textZero, prompt: Text("Input Zero"))
-				.animateHeight(true)
+				.animateFloatingPromptHeight(true)
 				.focused($focus, equals: .zero)
 				FloatingPromptTextField(text: $textOne) {
 					Label("Input One", systemImage: "pencil.circle").foregroundStyle(.secondary)
@@ -40,19 +40,18 @@ struct ContentView: View {
 				FloatingPromptTextField(text: $textThree) {
 					Label("Input Three", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
-				.floatingPrompt(
+				.floatingPrompt {
 					Label("Input Three", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
-				)
+				}
 				.focused($focus, equals: .three)
 				FloatingPromptTextField(text: $textFour) {
 					Label("Input Four", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
 				.textFieldForegroundStyle(Color.red)
-				.floatingPrompt(
+				.floatingPrompt {
 					Label("Input Four", systemImage: "pencil.circle.fill").foregroundStyle(Color.blue)
-				)
-				.font(.body)
-				.promptSpacing(5)
+				}
+				.floatingPromptSpacing(5)
 				.floatingPromptScale(0.65)
 				.focused($focus, equals: .four)
 				HStack {

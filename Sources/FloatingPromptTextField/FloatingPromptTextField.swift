@@ -1,7 +1,4 @@
 //
-//  FloatingPromptTextField.swift
-//  FloatingPromptTextField
-//
 //  Created by Emilio Peláez on 14/6/21.
 //
 
@@ -9,8 +6,6 @@ import SwiftUI
 
 /// A text input control with a prompt that moves or "floats" when it
 /// becomes focused, and for as long as the input text is not empty.
-
-@available(iOS 15.0, *)
 public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFieldForegroundStyle: ShapeStyle>: View {
 	
 	enum PromptState {
@@ -25,16 +20,15 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	private let prompt: Prompt
 	private let floatingPrompt: FloatingPrompt
 	
-	fileprivate var font: Font = .body
-	fileprivate var floatingPromptScale: Double = 0.65
-	fileprivate var promptSpacing: Double = 5
-	fileprivate var animateHeight: Bool = false
+	@Environment(\.floatingPromptScale) var floatingPromptScale
+	@Environment(\.floatingPromptSpacing) var floatingPromptSpacing
+	@Environment(\.animateFloatingPromptHeight) var animateFloatingPromptHeight
 	
 	@State private var promptState: PromptState
 	@State private var promptHeight: Double = 0
 	
-	private var floatingOffset: Double { promptSpacing + promptHeight * floatingPromptScale }
-	private var topMargin: Double { animateHeight && promptState == .normal ? 0 : floatingOffset }
+	private var floatingOffset: Double { floatingPromptSpacing + promptHeight * floatingPromptScale }
+	private var topMargin: Double { animateFloatingPromptHeight && promptState == .normal ? 0 : floatingOffset }
 	
 	fileprivate init(text: Binding<String>,
 							textFieldStyle: TextFieldForegroundStyle,
@@ -52,7 +46,6 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	public var body: some View {
 		ZStack(alignment: .leading) {
 			TextField("", text: text)
-				.font(font)
 				.foregroundStyle(textFieldStyle)
 				.focused($isFocused)
 			ZStack(alignment: .leading) {
@@ -86,7 +79,6 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	}
 }
 
-@available(iOS 15.0, *)
 extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle {
 	fileprivate  init(text: Binding<String>,
 							@ViewBuilder prompt: () -> Prompt,
@@ -98,7 +90,6 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == Hierarchical
 	}
 }
 
-@available(iOS 15.0, *)
 extension FloatingPromptTextField where Prompt == FloatingPrompt {
 	fileprivate  init(text: Binding<String>,
 							textFieldStyle: TextFieldForegroundStyle,
@@ -110,7 +101,6 @@ extension FloatingPromptTextField where Prompt == FloatingPrompt {
 	}
 }
 
-@available(iOS 15.0, *)
 extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle, Prompt == FloatingPrompt {
 	/// Creates a FloatingPromptTextField with a string binding and a view that will be used
 	/// as the prompt.
@@ -128,7 +118,6 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == Hierarchical
 	}
 }
 
-@available(iOS 15.0, *)
 extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle, Prompt == Text, FloatingPrompt == Text {
 	/// Creates a FloatingPromptTextField with a string binding and a Text view that will be
 	/// used as the prompt.
@@ -141,87 +130,33 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == Hierarchical
 		self.init(text: text,
 							textFieldStyle: .primary,
 							prompt: { prompt.foregroundColor(.secondary) },
-							floatingPrompt: { prompt.foregroundColor(.primary) })
+							floatingPrompt: { prompt.foregroundColor(.accentColor) })
 	}
 }
 
-@available(iOS 15.0, *)
 extension FloatingPromptTextField {
-	/// Sets the font for the text field in this view.
-	///
-	/// - Parameter font: The font for the text field.
-	public func font(_ font: Font) -> Self {
-		var this = self
-		this.font = font
-		return this
-	}
-	
 	/// A `View` to be used as the floating prompt when the text field is focused
 	/// or not empty.
 	///
 	/// - Parameter floatingPrompt: The view that will be used as the floating
 	/// prompt when the text field is focused or not empty.
-	public func floatingPrompt<Content: View>(_ floatingPrompt: Content) -> FloatingPromptTextField<Prompt, Content, TextFieldForegroundStyle> {
-		FloatingPromptTextField<Prompt, Content, TextFieldForegroundStyle>(
+	public func floatingPrompt<FloatingPrompt: View>(_ floatingPrompt: () -> FloatingPrompt) -> FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldForegroundStyle> {
+		FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldForegroundStyle>(
 			text: text,
 			textFieldStyle: textFieldStyle,
 			prompt: { prompt },
-			floatingPrompt: { floatingPrompt }
+			floatingPrompt: { floatingPrompt() }
 		)
 	}
 	
 	/// Sets the style for the text field. You can use this to set the color of the
 	/// text in the text field.
-	///
-	/// - Parameter textFieldStyle: The style for the text field.
-	public func textFieldForegroundStyle<Style: ShapeStyle>(_ textFieldStyle: Style) -> FloatingPromptTextField<Prompt, FloatingPrompt, Style> {
+	public func textFieldForegroundStyle<Style: ShapeStyle>(_ style: Style) -> FloatingPromptTextField<Prompt, FloatingPrompt, Style> {
 		FloatingPromptTextField<Prompt, FloatingPrompt, Style>(
 			text: text,
-			textFieldStyle: textFieldStyle,
+			textFieldStyle: style,
 			prompt: { prompt },
 			floatingPrompt: { floatingPrompt }
 		)
-	}
-	
-	/// Sets the scale at which the prompt will be displayed when floating
-	/// over the text field.
-	///
-	/// - Parameter floatingPromptScale: The scale for the floating prompt.
-	public func floatingPromptScale(_ floatingPromptScale: Double) -> Self {
-		var this = self
-		this.floatingPromptScale = floatingPromptScale
-		return this
-	}
-	
-	/// Sets the spacing between the floating prompt and the text field.
-	///
-	/// - Parameter promptSpacing: The spacing in points between the floating
-	/// prompt and the text field.
-	public func promptSpacing(_ promptSpacing: Double) -> Self {
-		var this = self
-		this.promptSpacing = promptSpacing
-		return this
-	}
-	
-	/// Sets whether or not the view will animate its height to accommodate the
-	/// floating prompt, or if the height of the floating prompt will
-	/// always be calculated into the height's view.
-	///
-	/// - Parameter animateHeight: Whether or not the view will animate its
-	/// height to accommodate the floating prompt.
-	public func animateHeight(_ animateHeight: Bool) -> Self {
-		var this = self
-		this.animateHeight = animateHeight
-		return this
-	}
-}
-
-@available(iOS 15.0, *)
-private struct FloatingPromptTextField_Previews: PreviewProvider {
-	static var previews: some View {
-		FloatingPromptTextField(text: .constant("Hello")) {
-			Text("Prompt")
-		}
-		.previewLayout(.fixed(width: 200, height: 80))
 	}
 }
