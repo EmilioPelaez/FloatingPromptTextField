@@ -70,6 +70,16 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 			promptHeight = height
 		}
 		.onTapGesture { isFocused = true }
+		.accessibilityRepresentation {
+			TextField(text: text, prompt: nil) {
+				switch promptState {
+				case .normal:
+					prompt
+				case .floating:
+					floatingPrompt
+				}
+			}
+		}
 	}
 	
 	func updateState() {
