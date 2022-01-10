@@ -5,11 +5,6 @@
 import SwiftUI
 
 extension View {
-	/// Sets the font for the text field in this view.
-	public func textFieldFont(_ font: Font) -> some View {
-		environment(\.textFieldFont, font)
-	}
-	
 	/// Sets the scale at which the prompt will be displayed when floating
 	/// over the text field.
 	public func floatingPromptScale(_ scale: Double) -> some View {

@@ -16,8 +16,5 @@ let package = Package(
         .target(
             name: "FloatingPromptTextField",
             dependencies: []),
-        .testTarget(
-            name: "FloatingPromptTextFieldTests",
-            dependencies: ["FloatingPromptTextField"]),
     ]
 )

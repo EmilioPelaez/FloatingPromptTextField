@@ -4,10 +4,6 @@
 
 import SwiftUI
 
-struct TextFieldFontKey: EnvironmentKey {
-	static var defaultValue: Font? = nil
-}
-
 struct FloatingPromptScaleKey: EnvironmentKey {
 	static var defaultValue: Double = 0.65
 }
@@ -21,10 +17,6 @@ struct AnimateFloatingPromptHeightKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var textFieldFont: Font? {
-		get { self[TextFieldFontKey.self] }
-		set { self[TextFieldFontKey.self] = newValue }
-	}
 	
 	var floatingPromptScale: Double {
 		get { self[FloatingPromptScaleKey.self] }

@@ -1,5 +1,10 @@
 # FloatingPromptTextField
 
+[![Platforms](https://img.shields.io/badge/platforms-iOS-lightgray.svg)]()
+[![Swift 5.5](https://img.shields.io/badge/swift-5.5-red.svg?style=flat)](https://developer.apple.com/swift)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
+[![Twitter](https://img.shields.io/badge/twitter-@emiliopelaez-blue.svg)](http://twitter.com/emiliopelaez)
+
 A prompt is the label in a text field that informs the user about the kind of content the text field expects. In a default `TextField` it disappears when the user starts typing, hiding this important information.
 
 A "floating" prompt/label/placeholder is a UX pattern pioneered by [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField) where the prompt floats over the text field when it becomes active, keeping this useful information visible even after the user has begun typing.
@@ -40,7 +45,7 @@ FocusTextField(text: $text) {
 
 ## Customization
 
-All of the customization is done using modifier-style functions. Since these are exclusive to `FloatingPromptTextField`, they must be called before calling other modifiers.
+All of the customization is done using modifier-style functions.
 
 ### Customizing the Floating Prompt
 
@@ -52,20 +57,13 @@ In this example we use a `Text` view with the same font but different contents a
 FloatingPromptTextField(text: $text) {
 	Text("Prompt")
 }
-.floatingPrompt(
+.floatingPrompt {
 	Text("Floating Prompt")
 		.foregroundStyle(Color.blue)
-)
+}
 ```
 
-### TextField Font
-
-Just like setting a font on a Text view, use the `font` modifier.
-
-```swift
-FloatingPromptTextField(text: $text, prompt: Text("Prompt"))
-	.font(.title)
-```
+Note: This function is exclusive to `FloatingPromptTextField`, so it must be called before calling other modifiers.
 
 ### TextField Color/Gradient
 
@@ -74,19 +72,23 @@ FloatingPromptTextField(text: $text, prompt: Text("Prompt"))
 	.textFieldForegroundStyle(Color.red)
 ```
 
-### Floating Prompt Spacing and Scale
+Note: This function is exclusive to `FloatingPromptTextField`, so it must be called before calling other modifiers.
 
-`promptSpacing` will determine the spacing between the text field and the floating prompt.
+### Floating Prompt Spacing, Scale and Animation 
 
-`floatingPromptScale` will determine the scale that will be used when the prompt becomes a floating label.
+`floatingPromptScale(_ scale: Double)` will determine the scale that will be used when the prompt becomes a floating label.
+
+`floatingPromptSpacing(_ spacing: Double)` will determine the spacing between the text field and the floating prompt.
+
+`animateFloatingPromptHeight(_ animate: Bool)` will determine whether or not the view will animate its height to accommodate the floating prompt, or if the height of the floating prompt will always be calculated into the height's view.
 
 ```swift
 FloatingPromptTextField(text: $text, prompt: Text("Prompt"))
-	.promptSpacing(5)
 	.floatingPromptScale(0.65)
+	.floatingPromptSpacing(5)
+	.animateFloatingPromptHeight(true)
 ```
 
 ## To Do
 
  - Accessibility
- - Support the new TextField initializers that receive a binding that can be formatted.
