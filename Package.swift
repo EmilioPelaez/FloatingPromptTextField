@@ -4,17 +4,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "FloatingPromptTextField",
-		platforms: [.iOS(.v15)],
-    products: [
-        .library(
-            name: "FloatingPromptTextField",
-            targets: ["FloatingPromptTextField"]),
-    ],
-    dependencies: [],
-		targets: [
-        .target(
-            name: "FloatingPromptTextField",
-            dependencies: []),
-    ]
+	name: "FloatingPromptTextField",
+	platforms: [.iOS(.v15)],
+	products: [
+		.library(
+			name: "FloatingPromptTextField",
+			targets: ["FloatingPromptTextField"]
+		),
+	],
+	dependencies: [],
+	targets: [
+		.target(
+			name: "FloatingPromptTextField",
+			dependencies: []
+		),
+	]
 )

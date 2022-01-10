@@ -5,8 +5,8 @@
 //  Created by Emilio Peláez on 20/6/21.
 //
 
-import SwiftUI
 import FloatingPromptTextField
+import SwiftUI
 
 struct ContentView: View {
 	@State var textZero: String = ""
@@ -19,15 +19,15 @@ struct ContentView: View {
 		case zero, one, two, three, four
 	}
 	
-	@FocusState public var focus: Focus?
+	@FocusState var focus: Focus?
 	
 	var body: some View {
 		ZStack(alignment: .center) {
 			Color.clear
 			VStack(spacing: 25) {
 				FloatingPromptTextField(text: $textZero, prompt: Text("Input Zero"))
-				.animateFloatingPromptHeight(true)
-				.focused($focus, equals: .zero)
+					.animateFloatingPromptHeight(true)
+					.focused($focus, equals: .zero)
 				FloatingPromptTextField(text: $textOne) {
 					Label("Input One", systemImage: "pencil.circle").foregroundStyle(.secondary)
 				}
@@ -56,7 +56,7 @@ struct ContentView: View {
 				.focused($focus, equals: .four)
 				HStack {
 					Spacer()
-					Button(action: { focus = nil }) {
+					Button(action: unfocusAction) {
 						Text("Unfocus")
 					}
 					.buttonStyle(.bordered)
@@ -68,6 +68,10 @@ struct ContentView: View {
 			.cornerRadius(10)
 			.padding()
 		}
+	}
+	
+	func unfocusAction() {
+		focus = nil
 	}
 }
 

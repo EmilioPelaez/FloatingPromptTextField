@@ -4,22 +4,22 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
 	/// Sets the scale at which the prompt will be displayed when floating
 	/// over the text field.
-	public func floatingPromptScale(_ scale: Double) -> some View {
+	func floatingPromptScale(_ scale: Double) -> some View {
 		environment(\.floatingPromptScale, scale)
 	}
 	
 	/// Sets the spacing between the floating prompt and the text field.
-	public func floatingPromptSpacing(_ spacing: Double) -> some View {
+	func floatingPromptSpacing(_ spacing: Double) -> some View {
 		environment(\.floatingPromptSpacing, spacing)
 	}
 	
 	/// Sets whether or not the view will animate its height to accommodate the
 	/// floating prompt, or if the height of the floating prompt will
 	/// always be calculated into the height's view.
-	public func animateFloatingPromptHeight(_ animate: Bool) -> some View {
+	func animateFloatingPromptHeight(_ animate: Bool) -> some View {
 		environment(\.animateFloatingPromptHeight, animate)
 	}
 }

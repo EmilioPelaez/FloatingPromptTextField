@@ -6,7 +6,7 @@ import SwiftUI
 
 /// A text input control with a prompt that moves or "floats" when it
 /// becomes focused, and for as long as the input text is not empty.
-public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFieldForegroundStyle: ShapeStyle>: View {
+public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFieldStyle: ShapeStyle>: View {
 	
 	enum PromptState {
 		case normal
@@ -16,7 +16,7 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	@FocusState private var isFocused: Bool
 	
 	private var text: Binding<String>
-	private let textFieldStyle: TextFieldForegroundStyle
+	private let textFieldStyle: TextFieldStyle
 	private let prompt: Prompt
 	private let floatingPrompt: FloatingPrompt
 	
@@ -31,9 +31,9 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	private var topMargin: Double { animateFloatingPromptHeight && promptState == .normal ? 0 : floatingOffset }
 	
 	fileprivate init(text: Binding<String>,
-							textFieldStyle: TextFieldForegroundStyle,
-							@ViewBuilder prompt: () -> Prompt,
-							@ViewBuilder floatingPrompt: () -> FloatingPrompt) {
+	                 textFieldStyle: TextFieldStyle,
+	                 @ViewBuilder prompt: () -> Prompt,
+	                 @ViewBuilder floatingPrompt: () -> FloatingPrompt) {
 		self.text = text
 		self.prompt = prompt()
 		self.floatingPrompt = floatingPrompt()
@@ -54,9 +54,9 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 				floatingPrompt
 					.background(
 						GeometryReader { proxy in
-						Color.clear
-							.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
-					}
+							Color.clear
+								.preference(key: HeightPreferenceKey.self, value: proxy.size.height)
+						}
 					)
 					.opacity(promptState == .floating ? 1 : 0)
 			}
@@ -79,29 +79,29 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	}
 }
 
-extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle {
-	fileprivate  init(text: Binding<String>,
-							@ViewBuilder prompt: () -> Prompt,
-							@ViewBuilder floatingPrompt: () -> FloatingPrompt) {
+private extension FloatingPromptTextField where TextFieldStyle == HierarchicalShapeStyle {
+	init(text: Binding<String>,
+	     @ViewBuilder prompt: () -> Prompt,
+	     @ViewBuilder floatingPrompt: () -> FloatingPrompt) {
 		self.init(text: text,
-							textFieldStyle: .primary,
-							prompt: prompt,
-							floatingPrompt: floatingPrompt)
+		          textFieldStyle: .primary,
+		          prompt: prompt,
+		          floatingPrompt: floatingPrompt)
 	}
 }
 
-extension FloatingPromptTextField where Prompt == FloatingPrompt {
-	fileprivate  init(text: Binding<String>,
-							textFieldStyle: TextFieldForegroundStyle,
-							@ViewBuilder prompt: () -> Prompt) {
+private extension FloatingPromptTextField where Prompt == FloatingPrompt {
+	init(text: Binding<String>,
+	     textFieldStyle: TextFieldStyle,
+	     @ViewBuilder prompt: () -> Prompt) {
 		self.init(text: text,
-							textFieldStyle: textFieldStyle,
-							prompt: prompt,
-							floatingPrompt: prompt)
+		          textFieldStyle: textFieldStyle,
+		          prompt: prompt,
+		          floatingPrompt: prompt)
 	}
 }
 
-extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle, Prompt == FloatingPrompt {
+public extension FloatingPromptTextField where TextFieldStyle == HierarchicalShapeStyle, Prompt == FloatingPrompt {
 	/// Creates a FloatingPromptTextField with a string binding and a view that will be used
 	/// as the prompt.
 	///
@@ -109,16 +109,16 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == Hierarchical
 	///   - text: A binding to the text to display and edit.
 	///   - prompt: A view that will be used as a prompt when the text field
 	///   is empty, and as a floating prompt when it's focused or not empty,
-	public init(text: Binding<String>,
-							@ViewBuilder prompt: () -> Prompt) {
+	init(text: Binding<String>,
+	     @ViewBuilder prompt: () -> Prompt) {
 		self.init(text: text,
-							textFieldStyle: .primary,
-							prompt: prompt,
-							floatingPrompt: prompt)
+		          textFieldStyle: .primary,
+		          prompt: prompt,
+		          floatingPrompt: prompt)
 	}
 }
 
-extension FloatingPromptTextField where TextFieldForegroundStyle == HierarchicalShapeStyle, Prompt == Text, FloatingPrompt == Text {
+public extension FloatingPromptTextField where TextFieldStyle == HierarchicalShapeStyle, Prompt == Text, FloatingPrompt == Text {
 	/// Creates a FloatingPromptTextField with a string binding and a Text view that will be
 	/// used as the prompt.
 	///
@@ -126,22 +126,22 @@ extension FloatingPromptTextField where TextFieldForegroundStyle == Hierarchical
 	///   - text: A binding to the text to display and edit.
 	///   - prompt: A Text view that will be used as a prompt when the text field
 	///   is empty, and as a floating prompt when it's focused or not empty.
-	public init(text: Binding<String>, prompt: Text) {
+	init(text: Binding<String>, prompt: Text) {
 		self.init(text: text,
-							textFieldStyle: .primary,
-							prompt: { prompt.foregroundColor(.secondary) },
-							floatingPrompt: { prompt.foregroundColor(.accentColor) })
+		          textFieldStyle: .primary,
+		          prompt: { prompt.foregroundColor(.secondary) },
+		          floatingPrompt: { prompt.foregroundColor(.accentColor) })
 	}
 }
 
-extension FloatingPromptTextField {
+public extension FloatingPromptTextField {
 	/// A `View` to be used as the floating prompt when the text field is focused
 	/// or not empty.
 	///
 	/// - Parameter floatingPrompt: The view that will be used as the floating
 	/// prompt when the text field is focused or not empty.
-	public func floatingPrompt<FloatingPrompt: View>(_ floatingPrompt: () -> FloatingPrompt) -> FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldForegroundStyle> {
-		FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldForegroundStyle>(
+	func floatingPrompt<FloatingPrompt: View>(_ floatingPrompt: () -> FloatingPrompt) -> FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldStyle> {
+		FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldStyle>(
 			text: text,
 			textFieldStyle: textFieldStyle,
 			prompt: { prompt },
@@ -151,7 +151,7 @@ extension FloatingPromptTextField {
 	
 	/// Sets the style for the text field. You can use this to set the color of the
 	/// text in the text field.
-	public func textFieldForegroundStyle<Style: ShapeStyle>(_ style: Style) -> FloatingPromptTextField<Prompt, FloatingPrompt, Style> {
+	func textFieldForegroundStyle<Style: ShapeStyle>(_ style: Style) -> FloatingPromptTextField<Prompt, FloatingPrompt, Style> {
 		FloatingPromptTextField<Prompt, FloatingPrompt, Style>(
 			text: text,
 			textFieldStyle: style,
