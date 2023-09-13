@@ -150,8 +150,8 @@ public extension FloatingPromptTextField {
 	///
 	/// - Parameter floatingPrompt: The view that will be used as the floating
 	/// prompt when the text field is focused or not empty.
-	func floatingPrompt<FloatingPrompt: View>(_ floatingPrompt: () -> FloatingPrompt) -> FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldStyle> {
-		FloatingPromptTextField<Prompt, FloatingPrompt, TextFieldStyle>(
+	func floatingPrompt<FloatingPromptType: View>(_ floatingPrompt: () -> FloatingPromptType) -> FloatingPromptTextField<Prompt, FloatingPromptType, TextFieldStyle> {
+		FloatingPromptTextField<Prompt, FloatingPromptType, TextFieldStyle>(
 			text: text,
 			textFieldStyle: textFieldStyle,
 			prompt: { prompt },
