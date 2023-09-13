@@ -12,6 +12,10 @@ struct FloatingPromptSpacingKey: EnvironmentKey {
 	static var defaultValue: Double = 5
 }
 
+struct PromptLeadingMarginKey: EnvironmentKey {
+	static var defaultValue: Double = 0
+}
+
 struct AnimateFloatingPromptHeightKey: EnvironmentKey {
 	static var defaultValue = false
 }
@@ -21,6 +25,11 @@ extension EnvironmentValues {
 	var floatingPromptScale: Double {
 		get { self[FloatingPromptScaleKey.self] }
 		set { self[FloatingPromptScaleKey.self] = newValue }
+	}
+	
+	var promptLeadingMargin: Double {
+		get { self[PromptLeadingMarginKey.self] }
+		set { self[PromptLeadingMarginKey.self] = newValue }
 	}
 	
 	var floatingPromptSpacing: Double {

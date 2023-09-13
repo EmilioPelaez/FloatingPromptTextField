@@ -16,6 +16,11 @@ public extension View {
 		environment(\.floatingPromptSpacing, spacing)
 	}
 	
+	/// Sets the leading margin for the prompt in both floating and regular states
+	func promptLeadingMargin(_ margin: Double) -> some View {
+		environment(\.promptLeadingMargin, margin)
+	}
+	
 	/// Sets whether or not the view will animate its height to accommodate the
 	/// floating prompt, or if the height of the floating prompt will
 	/// always be calculated into the height's view.

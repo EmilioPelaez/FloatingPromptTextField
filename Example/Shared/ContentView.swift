@@ -64,7 +64,6 @@ struct ContentView: View {
 				}
 			}
 			.padding()
-			.background(Color(.secondarySystemBackground))
 			.cornerRadius(10)
 			.padding()
 		}

@@ -22,6 +22,7 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 	
 	@Environment(\.floatingPromptScale) var floatingPromptScale
 	@Environment(\.floatingPromptSpacing) var floatingPromptSpacing
+	@Environment(\.promptLeadingMargin) var promptLeadingMargin
 	@Environment(\.animateFloatingPromptHeight) var animateFloatingPromptHeight
 	
 	@State private var promptState: PromptState
@@ -60,6 +61,7 @@ public struct FloatingPromptTextField<Prompt: View, FloatingPrompt: View, TextFi
 					)
 					.opacity(promptState == .floating ? 1 : 0)
 			}
+			.padding(.leading, promptLeadingMargin)
 			.scaleEffect(promptState == .floating ? floatingPromptScale : 1, anchor: .topLeading)
 			.offset(x: 0, y: promptState == .floating ? -floatingOffset : 0)
 		}
